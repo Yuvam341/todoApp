@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1 class="heading1"><i class="fa fa-list" id="loading" aria-hidden="true"></i>&nbsp;TO-DO LIST</h1>
+    <div class="todocreate">
+        <form action="/create" method="post">
+        <div class="description">
+            <h2 class="deschead">DESCRIPTION</h2>
+            <textarea class="descinp" type="text" name="desc" placeholder="what do you need to do?" required ></textarea>
+        </div>
+        <div class="boxes">
+            <div class="box1">
+                <h2 class="cate">CATEGORY</h2>
+                <select class="listing" name="category">
+                    <option disabled selected value> -- choose  a category -- </option>
+                        <option name="work" value="Work">Work</option>
+                        <option name="personal" value="Personal">personal</option>
+                        <option name="public" value="Public">Public</option>
+                        <option name="cleaning" value="Cleaning">Cleaning</option>
+                        <option name="school" value="School">School</option>
+                        <option name="Other" value="Other">Other</option>
+                </select>
+            </div>
+            <div class="box2">
+                    <h2 class="datehead">DUE DATE</h2>
+                <input class="datebox" type="date" id="start" name="date" placeholder="dd-mm-yy" min="2020-01-01" max="2022-12-31">
+            </div>
+        </div>
+        <div class="buttonscon">
+            <button class="addbutton" id="rotatedtext" type="submit">Add Tasks</button>
+        </form>
+        <form action="/deletetasks" method="post">
+            <button class="addbutton" type="submit">Delete Tasks</button>
+        
+        </div>
+    </div>
+  
+   
+    <% for(var i of myc) {%>
+        <input type="checkbox" class="checkinp" name="delete" value="<%=i._id%>">
+        <div class="container">
+   <div class="listcon">
+
+       <div class="listleft">
+        
+        <div class="des"><%=i.desc%></div>
+         <h3 class="dat"><i class="fas fa-calendar-alt"></i>&nbsp;<%=i.date%></h3>
+         </div>
+       <div class="listright">
+        
+       <h4 class="categoryhead"><%=i.category%></h4>
+       <a class="editbutton" href="edit/?id=<%=i._id%>&desc=<%=i.desc%>&date=<%=i.date%>&category=<%=i.category%>">Edit </a>
+        </div>
+       
+   </div>
+
+   </div>
+   <%}%>
+   
+</form>
+</body>
+</html>
